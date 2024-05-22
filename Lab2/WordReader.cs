@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*
+ * .Net - Lab2
+ * Student Name: Marcos Astudillo Carrasco
+ * Student Number: 041057439
+ * Course: CST8359
+ * Lab Section: 301
+ */
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -142,125 +149,196 @@ class WordReader
     // Method to import words from a file and return a list of words
     static IList<string> ImportWordsFromFile(string path)
     {
+        // Initialize a list to store the words
         IList<string> words = new List<string>();
+
         try
         {
+            // Open the file with a StreamReader
             using (StreamReader reader = new StreamReader(path))
             {
                 string? word;
+
+                // Read each line in the file
                 while ((word = reader.ReadLine()) != null)
                 {
+                    // If the line is not null, add it to the list
                     if (word != null)
                     {
                         words.Add(word);
                     }
                 }
             }
+
+            // Output the number of words read from the file
             Console.WriteLine($"Number of words read: {words.Count}");
         }
         catch (Exception ex)
         {
+            // Handle any exceptions that occur during file reading
             Console.WriteLine($"Error: {ex.Message}");
         }
+
+        // Return the list of words
         return words;
     }
+
 
     // Method to perform bubble sort on the list of words
     static IList<string> BubbleSort(IList<string> words)
     {
+        // Start a stopwatch to measure the sorting time
         var watch = System.Diagnostics.Stopwatch.StartNew();
+
+        // Outer loop to iterate through the list of words
         for (int i = 0; i < words.Count - 1; i++)
         {
+            // Inner loop to compare adjacent words
             for (int j = 0; j < words.Count - i - 1; j++)
             {
+                // Compare the current word with the next word
                 if (string.Compare(words[j], words[j + 1], StringComparison.Ordinal) > 0)
                 {
+                    // Swap the words if they are in the wrong order
                     string temp = words[j];
                     words[j] = words[j + 1];
                     words[j + 1] = temp;
                 }
             }
         }
+
+        // Stop the stopwatch after sorting is complete
         watch.Stop();
+
+        // Output the time taken to perform the bubble sort
         Console.WriteLine($"Bubble Sort Time: {watch.ElapsedMilliseconds} ms");
+
+        // Return the sorted list of words
         return words;
     }
+
 
     // Method to perform LINQ sort on the list of words
     static IList<string> LINQSort(IList<string> words)
     {
+        // Start a stopwatch to measure the sorting time
         var watch = System.Diagnostics.Stopwatch.StartNew();
+
+        // Use LINQ to sort the words in ascending order and convert to a list
         var sortedWords = words.OrderBy(w => w).ToList();
+
+        // Stop the stopwatch after sorting is complete
         watch.Stop();
+
+        // Output the time taken to perform the LINQ sort
         Console.WriteLine($"LINQ Sort Time: {watch.ElapsedMilliseconds} ms");
+
+        // Return the sorted list of words
         return sortedWords;
     }
 
     // Method to count the distinct words in the list
     static int CountDistinctWords(IList<string> words)
     {
+        // Use LINQ to count the number of distinct words in the list
         int distinctCount = words.Distinct().Count();
+
+        // Output the count of distinct words
         Console.WriteLine($"Distinct Words Count: {distinctCount}");
+
+        // Return the count of distinct words
         return distinctCount;
     }
 
     // Method to get the last 10 words from the list
     static IList<string> GetLast10Words(IList<string> words)
     {
+        // Use LINQ to skip elements and get the last 10 words from the list
         var last10Words = words.Skip(Math.Max(0, words.Count - 10)).ToList();
+
+        // Output the last 10 words
         Console.WriteLine("Last 10 Words:");
         foreach (var word in last10Words)
         {
             Console.WriteLine(word);
         }
+
+        // Return the list of the last 10 words
         return last10Words;
     }
 
     // Method to reverse the list of words and print them
     static IList<string> ReverseWords(IList<string> words)
     {
+        // Use LINQ to reverse the order of the words in the list
         var reversedWords = words.AsEnumerable().Reverse().ToList();
+
+        // Output the reversed list of words
         Console.WriteLine("Reversed Words:");
         foreach (var word in reversedWords)
         {
             Console.WriteLine(word);
         }
+
+        // Return the reversed list of words
         return reversedWords;
     }
 
     // Method to get words ending with 'd' from the list
     static IList<string> GetWordsEndingWithD(IList<string> words)
     {
+        // Use LINQ to filter words that are not null and end with 'd'
         var wordsEndingWithD = words.Where(w => w != null && w.EndsWith("d")).ToList();
+
+        // Output the count of words ending with 'd'
         Console.WriteLine($"Words ending with 'd': {wordsEndingWithD.Count}");
+
+        // Output each word that ends with 'd'
         foreach (var word in wordsEndingWithD)
         {
             Console.WriteLine(word);
         }
+
+        // Return the list of words ending with 'd'
         return wordsEndingWithD;
     }
 
     // Method to get words starting with 'q' from the list
     static IList<string> GetWordsStartingWithQ(IList<string> words)
     {
+        // Use LINQ to filter words that are not null and start with 'q'
         var wordsStartingWithQ = words.Where(w => w != null && w.StartsWith("q")).ToList();
+
+        // Output the count of words starting with 'q'
         Console.WriteLine($"Words starting with 'q': {wordsStartingWithQ.Count}");
+
+        // Output each word that starts with 'q'
         foreach (var word in wordsStartingWithQ)
         {
             Console.WriteLine(word);
         }
+
+        // Return the list of words starting with 'q'
         return wordsStartingWithQ;
     }
 
     // Method to get words with more than 3 characters and containing 'a'
     static IList<string> GetWordsWithAAndMoreThan3Chars(IList<string> words)
     {
+        // Use LINQ to filter words that are not null, have more than 3 characters, and contain 'a'
         var wordsWithA = words.Where(w => w != null && w.Length > 3 && w.Contains("a")).ToList();
+
+        // Output the count of words that meet the criteria
         Console.WriteLine($"Words with more than 3 characters and containing 'a': {wordsWithA.Count}");
+
+        // Output each word that meets the criteria
         foreach (var word in wordsWithA)
         {
             Console.WriteLine(word);
         }
+
+        // Return the list of words that meet the criteria
         return wordsWithA;
     }
+
 }
