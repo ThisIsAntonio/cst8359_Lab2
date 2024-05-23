@@ -1,3 +1,5 @@
-bin/
-obj/.vs/
+.bin/
+.obj/
+Lab2/obj/
+Lab2/bin/
 .vs/
