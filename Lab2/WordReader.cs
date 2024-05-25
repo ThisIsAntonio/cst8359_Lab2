@@ -187,22 +187,23 @@ class WordReader
     // Method to perform bubble sort on the list of words
     static IList<string> BubbleSort(IList<string> words)
     {
+        var sortedWords = words.ToList();
         // Start a stopwatch to measure the sorting time
         var watch = System.Diagnostics.Stopwatch.StartNew();
 
         // Outer loop to iterate through the list of words
-        for (int i = 0; i < words.Count - 1; i++)
+        for (int i = 0; i < sortedWords.Count - 1; i++)
         {
             // Inner loop to compare adjacent words
-            for (int j = 0; j < words.Count - i - 1; j++)
+            for (int j = 0; j < sortedWords.Count - i - 1; j++)
             {
                 // Compare the current word with the next word
-                if (string.Compare(words[j], words[j + 1], StringComparison.Ordinal) > 0)
+                if (string.Compare(sortedWords[j], sortedWords[j + 1], StringComparison.Ordinal) > 0)
                 {
                     // Swap the words if they are in the wrong order
-                    string temp = words[j];
-                    words[j] = words[j + 1];
-                    words[j + 1] = temp;
+                    string temp = sortedWords[j];
+                    sortedWords[j] = sortedWords[j + 1];
+                    sortedWords[j + 1] = temp;
                 }
             }
         }
@@ -214,7 +215,7 @@ class WordReader
         Console.WriteLine($"Bubble Sort Time: {watch.ElapsedMilliseconds} ms");
 
         // Return the sorted list of words
-        return words;
+        return sortedWords;
     }
 
 
