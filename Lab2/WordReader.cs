@@ -255,7 +255,7 @@ class WordReader
     static IList<string> GetLast10Words(IList<string> words)
     {
         // Use LINQ to skip elements and get the last 10 words from the list
-        var last10Words = words.Skip(Math.Max(0, words.Count - 10)).ToList();
+        var last10Words = words.TakeLast(Math.Max(0, words.Count - 10)).ToList();
 
         // Output the last 10 words
         Console.WriteLine("Last 10 Words:");
